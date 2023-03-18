@@ -30,7 +30,7 @@ def generate_note(prompt, duration_details=None, auto_components=False):
         **get_model_selection(AppConfig.TEXT_ENGINE),
         **formated_prompt,
         "n": 1, 
-        "max_tokens" :7000,               
+        "max_tokens" :AppConfig.TEXT_ENGINE_MAX_TOKENS,               
         "temperature":AppConfig.TEXT_ENGINE_TEMPERATURE,
         "presence_penalty" : 2
     }
