@@ -62,7 +62,7 @@ def convert_midi_to_music(midi_file, exported_audio_path):
     from scipy.io import wavfile
     # Ref: https://github.com/andfanilo/streamlit-midi-to-wav/blob/main/app.py#LL64
     midi_data = pretty_midi.PrettyMIDI(midi_file)
-    audio_data = midi_data.fluidsynth()
+    audio_data = midi_data.fluidsynth(fs=44100)
     audio_data = np.int16(
         audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9
     )  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
