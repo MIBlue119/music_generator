@@ -10,7 +10,7 @@ text_engine_choices = {
     "gpt-4": "gpt-4",
 }  
 class AppConfig:
-    TEXT_ENGINE = text_engine_choices["gpt-4"]
+    TEXT_ENGINE = text_engine_choices["gpt-3.5-turbo"]
     TEXT_ENGINE_TEMPERATURE = 0.5
 
     def set_text_engine(self, text_engine):
