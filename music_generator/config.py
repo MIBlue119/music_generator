@@ -19,6 +19,4 @@ class AppConfig:
 load_dotenv()
 
 openai_api_key = os.getenv('OPENAI_API_KEY', None)
-if openai_api_key is None:
-    raise ValueError("Please set the OPENAI_API_KEY environment variable.")
 openai.api_key = openai_api_key
