@@ -13,7 +13,7 @@ st.write("This is a simple app that uses OpenAI GPT-3 to generate ABC music nota
 
 col1,col2=st.columns(2)
 openai_key=col1.text_input("OpenAI API Key",type="password")
-
+music_topic = col2.text_input("Music topic")
 make_button=st.button("Make Music")
 st.markdown("---")
 
@@ -28,16 +28,8 @@ if make_button:
     openai.api_key = openai_key
     with st.spinner(f"Generating music..."):
         
-        
-        music_topic = "GPT4發佈了，我們既興奮又害怕",
-        architecture_components = {
-            "第1~10秒":"開頭音樂聽起來是亢奮的",
-            "第10~20秒":"音樂變得平靜",
-            "第20~30秒":"音樂變得讓人驚奇",
-            "第30~40秒":"音樂變得可愛與特別",
-            "第40~50秒":"音樂變得緊張",
-        },
-        auto_components=False,
+        architecture_components = None
+        auto_components=True,
         max_attempts=1
         user_input= f"You ar a professional music composer. Please compose a music with this topic `{music_topic}`."
     
