@@ -52,7 +52,8 @@ if make_button:
                     print(f"Music midi exported to {midi_output_file}")
                     # Start to use fluidsynth to convert midi file to wav file
                     stem_name = Path(midi_output_file).stem
-                    wav_output_file = io.BytesIO()
+                    #wav_output_file = io.BytesIO()
+                    wav_output_file = os.path.join(path, f"{stem_name}.wav")
                     convert_midi_to_music(exported_midi_file, wav_output_file)
                     successful_attempt_count += 1
                 else:
@@ -67,7 +68,10 @@ if make_button:
             music_generated = True
             st.success("Music generated successfully!")
             st.audio(wav_output_file)
-            st.markdown("Download the audio by right-clicking on the media player")
+            # Add download buttons for MIDI and WAV files
+            st.download_button("Download MIDI file", midi_output_file, file_name="generated_music.mid", mime="audio/midi")
+            st.download_button("Download WAV file", wav_output_file, file_name="generated_music.wav", mime="audio/wav")
+
             st.session_state["generation_success"]=True
 
 if st.session_state["generation_success"]==True:
