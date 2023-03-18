@@ -8,3 +8,4 @@ music21
 python-dotenv
 pretty_midi
 scipy
+streamlit
