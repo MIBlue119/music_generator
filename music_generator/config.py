@@ -13,9 +13,10 @@ class AppConfig:
     TEXT_ENGINE = text_engine_choices["gpt-3.5-turbo"]
     TEXT_ENGINE_TEMPERATURE = 0.5
     TEXT_ENGINE_MAX_TOKENS = 2048
-        
-    def set_text_engine(self, text_engine):
-        self.TEXT_ENGINE = text_engine_choices[text_engine]
+
+    @classmethod    
+    def set_text_engine(cls, text_engine):
+        cls.TEXT_ENGINE = text_engine_choices[text_engine]
 
 load_dotenv()
 

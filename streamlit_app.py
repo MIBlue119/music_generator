@@ -7,6 +7,8 @@ from pathlib import Path
 import streamlit as st
 import streamlit_ext as ste
 import openai
+
+from music_generator.config import AppConfig
 from music_generator.generator import generate_note,export_abc_notations_to_file,convert_midi_to_music 
 
 st.title("Music Generator Demo based on OpenAI API")
@@ -15,6 +17,14 @@ st.write("This is a simple app that uses OpenAI GPT-3 to generate ABC music nota
 col1,col2=st.columns(2)
 openai_key=col1.text_input("OpenAI API Key",type="password")
 music_topic = col2.text_input("Music topic", "Cute Winnie the Pooh catches a red balloon and floats to the United States")
+
+text_engine_options = ["gpt-3.5-turbo","text-davinci-003", "gpt-4"]
+default_text_engine_option = "gpt-3.5-turbo"
+text_engine_select=col2.selectbox("Text Engine",options=text_engine_options, index=text_engine_options.index(default_text_engine_option), help='Select the Open AI text engine for music generation.')
+
+# Set the text engine
+AppConfig.set_text_engine(text_engine_select)
+
 make_button=st.button("Make Music")
 st.markdown("---")
 
