@@ -5,9 +5,11 @@ import os
 from pathlib import Path
 
 import streamlit as st
+import streamlit_ext as ste
 import openai
 from music_generator.generator import generate_note,export_abc_notations_to_file,convert_midi_to_music 
 
+ste.set_page_width("60em")
 st.title("Music Generator Demo based on OpenAI API")
 st.write("This is a simple app that uses OpenAI GPT-3 to generate ABC music notation based on the user's natural language specification. The app then parses the response and checks whether the generated music meets the user's requirements. The generated music can be exported to a MIDI file using music21 and converted to a WAV file using fluidsynth.")
 
@@ -92,5 +94,6 @@ if st.session_state["generation_success"]==True and st.session_state["midi_data"
     # Add download buttons for MIDI and WAV files with the topic included in the filename
     midi_file_name = f"generated_music.mid"
     wav_file_name = f"generated_music.wav"
-    st.download_button("Download MIDI file", data=st.session_state["midi_data"], file_name=midi_file_name, mime="audio/midi")
-    st.download_button("Download WAV file", data=st.session_state["wav_data"], file_name=wav_file_name, mime="audio/wav")        
+    ste.download_button("Download MIDI file", data=st.session_state["midi_data"], file_name=midi_file_name, mime="audio/midi")
+    ste.download_button("Download WAV file", data=st.session_state["wav_data"], file_name=wav_file_name, mime="audio/wav")
+     

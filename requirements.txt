@@ -9,3 +9,4 @@ music21
 python-dotenv
 scipy
 streamlit
+streamlit-ext
