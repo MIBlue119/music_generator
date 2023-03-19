@@ -13,7 +13,7 @@ st.write("This is a simple app that uses OpenAI GPT-3 to generate ABC music nota
 
 col1,col2=st.columns(2)
 openai_key=col1.text_input("OpenAI API Key",type="password")
-music_topic = col2.text_input("Music topic", "Cute Winnie the Pooh catches a red balloon and floats to the United States", height=50)
+music_topic = col2.text_input("Music topic", "Cute Winnie the Pooh catches a red balloon and floats to the United States")
 make_button=st.button("Make Music")
 st.markdown("---")
 
