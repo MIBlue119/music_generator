@@ -9,7 +9,6 @@ import streamlit_ext as ste
 import openai
 from music_generator.generator import generate_note,export_abc_notations_to_file,convert_midi_to_music 
 
-ste.set_page_width("60em")
 st.title("Music Generator Demo based on OpenAI API")
 st.write("This is a simple app that uses OpenAI GPT-3 to generate ABC music notation based on the user's natural language specification. The app then parses the response and checks whether the generated music meets the user's requirements. The generated music can be exported to a MIDI file using music21 and converted to a WAV file using fluidsynth.")
 
