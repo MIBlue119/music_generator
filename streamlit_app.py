@@ -76,8 +76,6 @@ if make_button:
             with open(wav_output_file, "rb") as wav_file:
                 st.session_state["wav_data"] = wav_file.read()
 
-            st.audio(wav_output_file)
-
             # Add download buttons for MIDI and WAV files with the topic included in the filename
             midi_file_name = f"generated_music.mid"
             wav_file_name = f"generated_music.wav"
