@@ -6,15 +6,15 @@ then parses the response and checks whether the generated music meets
 the user's requirements. The generated music can be exported to a MIDI
 file using music21 and converted to a WAV file using fluidsynth.
 
+- streamlit demo app: https://miblue119-music-generator-streamlit-app-9c9u5z.streamlit.app
+
 ## Installation
 
 `pip install -r requirements.txt`
 
-
 ## Usage
 
 `python -m music_generator.app`
-
 
 ## Credits
 
