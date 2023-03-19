@@ -23,6 +23,8 @@ if "generation_success" not in st.session_state:
 if os.path.exists(path) == False:
     os.mkdir(path)
 
+st.session_state["midi_data"] = None
+st.session_state["wav_data"] = None
 
 if make_button:
     openai.api_key = openai_key
@@ -76,12 +78,6 @@ if make_button:
             with open(wav_output_file, "rb") as wav_file:
                 st.session_state["wav_data"] = wav_file.read()
 
-            # Add download buttons for MIDI and WAV files with the topic included in the filename
-            midi_file_name = f"generated_music.mid"
-            wav_file_name = f"generated_music.wav"
-            st.download_button("Download MIDI file", data=st.session_state["midi_data"], file_name=midi_file_name, mime="audio/midi")
-            st.download_button("Download WAV file", data=st.session_state["wav_data"], file_name=wav_file_name, mime="audio/wav")
-
             st.session_state["generation_success"]=True
 
 if st.session_state["generation_success"]==True:
@@ -91,4 +87,10 @@ if st.session_state["generation_success"]==True:
         for file in os.listdir(path):
             os.remove(os.path.join(path, file))
     except:
-        pass             
+        pass
+if st.session_state["generation_success"]==True and st.session_state["midi_data"] is not None and st.session_state["wav_data"] is not None:
+    # Add download buttons for MIDI and WAV files with the topic included in the filename
+    midi_file_name = f"generated_music.mid"
+    wav_file_name = f"generated_music.wav"
+    st.download_button("Download MIDI file", data=st.session_state["midi_data"], file_name=midi_file_name, mime="audio/midi")
+    st.download_button("Download WAV file", data=st.session_state["wav_data"], file_name=wav_file_name, mime="audio/wav")        
