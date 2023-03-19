@@ -69,13 +69,27 @@ if make_button:
             st.success("Music generated successfully!")
             st.audio(wav_output_file)
             # Add download buttons for MIDI and WAV files
-            st.download_button("Download MIDI file", midi_output_file, file_name="generated_music.mid", mime="audio/midi")
-            st.download_button("Download WAV file", wav_output_file, file_name="generated_music.wav", mime="audio/wav")
+            # Read the MIDI and WAV file contents and store them in the session state
+            with open(midi_output_file, "rb") as midi_file:
+                st.session_state["midi_data"] = midi_file.read()
+
+            with open(wav_output_file, "rb") as wav_file:
+                st.session_state["wav_data"] = wav_file.read()
+
+            st.audio(wav_output_file)
+
+            # Add download buttons for MIDI and WAV files with the topic included in the filename
+            midi_file_name = f"generated_music.mid"
+            wav_file_name = f"generated_music.wav"
+            st.download_button("Download MIDI file", data=st.session_state["midi_data"], file_name=midi_file_name, mime="audio/midi")
+            st.download_button("Download WAV file", data=st.session_state["wav_data"], file_name=wav_file_name, mime="audio/wav")
 
             st.session_state["generation_success"]=True
 
 if st.session_state["generation_success"]==True:
     try:
+        os.remove(midi_output_file)
+        os.remove(wav_output_file)        
         for file in os.listdir(path):
             os.remove(os.path.join(path, file))
     except:
